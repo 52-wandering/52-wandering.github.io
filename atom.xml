@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://52-wandering.github.io/"/>
   <updated>2020-06-10T08:01:05.527Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://52-wandering.github.io/</id>
   
   <author>
     <name>Noodles</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>new</title>
-    <link href="http://yoursite.com/2020/06/10/new/"/>
-    <id>http://yoursite.com/2020/06/10/new/</id>
+    <link href="https://52-wandering.github.io/2020/06/10/new/"/>
+    <id>https://52-wandering.github.io/2020/06/10/new/</id>
     <published>2020-06-10T07:52:45.000Z</published>
     <updated>2020-06-10T08:01:05.527Z</updated>
     
@@ -36,14 +36,14 @@
     
     
     
-      <category term="cat" scheme="http://yoursite.com/tags/cat/"/>
+      <category term="cat" scheme="https://52-wandering.github.io/tags/cat/"/>
     
   </entry>
   
   <entry>
     <title>first blog</title>
-    <link href="http://yoursite.com/2020/06/10/first-blog/"/>
-    <id>http://yoursite.com/2020/06/10/first-blog/</id>
+    <link href="https://52-wandering.github.io/2020/06/10/first-blog/"/>
+    <id>https://52-wandering.github.io/2020/06/10/first-blog/</id>
     <published>2020-06-10T07:26:45.000Z</published>
     <updated>2020-06-10T08:02:35.306Z</updated>
     
@@ -62,7 +62,7 @@
     
     
     
-      <category term="blogtest" scheme="http://yoursite.com/tags/blogtest/"/>
+      <category term="blogtest" scheme="https://52-wandering.github.io/tags/blogtest/"/>
     
   </entry>
   
