@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>流浪的孤独</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-06-10T08:01:05.527Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Noodles</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>new</title>
+    <link href="http://yoursite.com/2020/06/10/new/"/>
+    <id>http://yoursite.com/2020/06/10/new/</id>
+    <published>2020-06-10T07:52:45.000Z</published>
+    <updated>2020-06-10T08:01:05.527Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;1&quot;&gt;&lt;a href=&quot;#1&quot; class=&quot;headerlink&quot; title=&quot;1&quot;&gt;&lt;/a&gt;1&lt;/h1&gt;&lt;h2 id=&quot;2&quot;&gt;&lt;a href=&quot;#2&quot; class=&quot;headerlink&quot; title=&quot;2&quot;&gt;&lt;/a&gt;2&lt;/h2&gt;
+      
+    
+    </summary>
+    
+    
+    
+      <category term="cat" scheme="http://yoursite.com/tags/cat/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>first blog</title>
+    <link href="http://yoursite.com/2020/06/10/first-blog/"/>
+    <id>http://yoursite.com/2020/06/10/first-blog/</id>
+    <published>2020-06-10T07:26:45.000Z</published>
+    <updated>2020-06-10T08:02:35.306Z</updated>
+    
+    <content type="html"><![CDATA[<p>终于做好了hexo博客的安装和部署，写下此文，当作这个博客的开端，希望自己能多积累，多长进。</p><p>凡事需要坚持，坚持才能胜利。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;终于做好了hexo博客的安装和部署，写下此文，当作这个博客的开端，希望自己能多积累，多长进。&lt;/p&gt;
+&lt;p&gt;凡事需要坚持，坚持才能胜利。&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+    
+      <category term="blogtest" scheme="http://yoursite.com/tags/blogtest/"/>
+    
+  </entry>
+  
+</feed>

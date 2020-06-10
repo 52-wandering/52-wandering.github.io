@@ -1,3 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
+  <entry>
+    <title>first blog</title>
+    <url>/2020/06/10/first-blog/</url>
+    <content><![CDATA[<p>终于做好了hexo博客的安装和部署，写下此文，当作这个博客的开端，希望自己能多积累，多长进。</p>
+<p>凡事需要坚持，坚持才能胜利。</p>
+]]></content>
+      <tags>
+        <tag>blogtest</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>new</title>
+    <url>/2020/06/10/new/</url>
+    <content><![CDATA[<h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2>]]></content>
+      <tags>
+        <tag>cat</tag>
+      </tags>
+  </entry>
 </search>
