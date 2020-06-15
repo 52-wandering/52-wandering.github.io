@@ -386,7 +386,36 @@
       
         
           
-            <h1 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h1>
+            <h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>学习需要积累，通常最好的实现方式是做笔记。为此，我们需要一个可以记录并分享自己所学，并能随时查阅复习的系统，最好的选择，就是建立一个博客系统。</p>
+<p>接下来，我们将要用python的web框架Django，来实现一个自己的博客系统。</p>
+<p>博客系统的需求分析：</p>
+<ol>
+<li>可以记录自己的笔记，或者想分享的知识技术，有一个清晰简洁的编辑页面</li>
+<li>能将自己的知识在网上分享展示出来，页面清晰优雅</li>
+<li>可以随时复习查阅，可以随时查找文章</li>
+<li>开启评论功能，增加交流</li>
+<li>开启社交功能，设置登录留言，直接联系博主</li>
+</ol>
+<p>综合以上需求，我们将会实现一个博客系统，同时通过这个项目，可以很好地学习python和Django实现项目的过程。</p>
+<h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2><p>此教程不会过多地详述关于python和Django的基础知识，我们会着重讲流程和相关库的使用，达到熟悉流程和项目依赖的效果。</p>
+<p>你需要：</p>
+<ul>
+<li><input disabled type="checkbox"> 一部可以上网的电脑，操作一般软件，至少不会卡顿的性能，系统最好是ubuntu18.04，作者的系统就是ubuntu18.04，若是其他系统，清自行做好兼容准备。</li>
+<li><input disabled type="checkbox"> 浏览器：建议使用谷歌浏览器</li>
+<li><input disabled type="checkbox"> 自行学习python3的基础知识，至少了解到python 的语法，基本数据结构，函数，类，以及描述符，WSGI等</li>
+<li><input disabled type="checkbox"> 安装python3.6，其他版本请自行了解清楚，</li>
+<li><input disabled type="checkbox"> 了解SQL，知道关系型数据库</li>
+<li><input disabled type="checkbox"> 安装Mysql8，若是想用django自带的Sqlite也可以（无需先安装），数据库是可以换的，难度不大</li>
+<li><input disabled type="checkbox"> 了解一下bootstrap4.5，此博客将会使用此来做前端页面。</li>
+<li><input disabled type="checkbox"> 如果想部署公网的话，可以提前购买好云服务器和域名，了解备案。（本教程将暂时不会涉及到部署，需要了解，可以私信作者）</li>
+</ul>
+<h2 id="博客架构"><a href="#博客架构" class="headerlink" title="博客架构"></a>博客架构</h2><ol>
+<li>语言：python 3.6</li>
+<li>后端： django 3</li>
+<li>前端： bootstrap 4</li>
+<li>数据库： Mysql 8 或者sqlite</li>
+</ol>
+
           
         
       
