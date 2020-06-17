@@ -72,31 +72,31 @@
 </li>
 <li><p>点击右下角 python3.6 位置</p>
 </li>
-<li><img src="/2020/06/16/%EF%BC%88python%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%89%93%E9%80%A0%E4%B9%8B%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%90%AF%E5%8A%A8django%E5%92%8C%E5%90%8E%E5%8F%B0/fan/图片/1.png" alt="1" style="zoom:80%;">
+<li><img src="/2020/06/16/%EF%BC%88python%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%89%93%E9%80%A0%E4%B9%8B%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%90%AF%E5%8A%A8django%E5%92%8C%E5%90%8E%E5%8F%B0/fan/project/hexo/source/_posts/（python个人博客打造之二）——启动django和后台/1.png" alt="1" style="zoom:80%;">
 </li>
 <li><p>点击interpreter setting</p>
 </li>
-<li><img src="/2020/06/16/%EF%BC%88python%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%89%93%E9%80%A0%E4%B9%8B%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%90%AF%E5%8A%A8django%E5%92%8C%E5%90%8E%E5%8F%B0/fan/图片/2020-06-17 14-13-52 的屏幕截图.png" alt="2020-06-17 14-13-52 的屏幕截图" style="zoom:80%;">
+<li><img src="/2020/06/16/%EF%BC%88python%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%89%93%E9%80%A0%E4%B9%8B%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%90%AF%E5%8A%A8django%E5%92%8C%E5%90%8E%E5%8F%B0/fan/project/hexo/source/_posts/（python个人博客打造之二）——启动django和后台/2020-06-17 14-13-52 的屏幕截图.png" alt="2020-06-17 14-13-52 的屏幕截图" style="zoom:80%;">
 </li>
 <li><p>点击add</p>
 </li>
-<li><p>![2020-06-17 14-14-22 的屏幕截图](/home/fan/图片/2020-06-17 14-14-22 的屏幕截图.png)</p>
+<li><p>![2020-06-17 14-14-22 的屏幕截图](/home/fan/project/hexo/source/_posts/（python个人博客打造之二）——启动django和后台/2020-06-17 14-14-22 的屏幕截图.png)</p>
 </li>
 <li><p>点击existing environment,点击interpreter右侧的方框，查找上述所说的路径，选择python3.6</p>
-<p>![2020-06-17 14-14-32 的屏幕截图](/home/fan/图片/2020-06-17 14-14-32 的屏幕截图.png)</p>
+<p>![2020-06-17 14-14-32 的屏幕截图](/home/fan/project/hexo/source/_posts/（python个人博客打造之二）——启动django和后台/2020-06-17 14-14-32 的屏幕截图.png)</p>
 <p>点击ok</p>
-<p>![2020-06-17 14-14-54 的屏幕截图](/home/fan/图片/2020-06-17 14-14-54 的屏幕截图.png)</p>
+<p>![2020-06-17 14-14-54 的屏幕截图](/home/fan/project/hexo/source/_posts/（python个人博客打造之二）——启动django和后台/2020-06-17 14-14-54 的屏幕截图.png)</p>
 <p>点击make available to all projects，点击ok</p>
-<p>![2020-06-17 14-15-01 的屏幕截图](/home/fan/图片/2020-06-17 14-15-01 的屏幕截图.png)</p>
+<p>![2020-06-17 14-15-01 的屏幕截图](/home/fan/project/hexo/source/_posts/（python个人博客打造之二）——启动django和后台/2020-06-17 14-15-01 的屏幕截图.png)</p>
 <p>可见本地已安装的依赖，点击ok，回到pycharm，可见右下角的解释器已经为python3.6(myblog-env)</p>
-<p>![2020-06-17 14-15-43 的屏幕截图](/home/fan/图片/2020-06-17 14-15-43 的屏幕截图.png)</p>
+<p>![2020-06-17 14-15-43 的屏幕截图](/home/fan/project/hexo/source/_posts/（python个人博客打造之二）——启动django和后台/2020-06-17 14-15-43 的屏幕截图.png)</p>
 </li>
 </ol>
 <h2 id="django-新建工程目录"><a href="#django-新建工程目录" class="headerlink" title="django 新建工程目录"></a>django 新建工程目录</h2><p>在终端下，输入：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">django-admin startproject blog /home/fan/project/myblog <span class="comment">#blog为项目名，后面为项目目录路径，不设置将会在当前目录下</span></span><br></pre></td></tr></table></figure>
 
 <p>生成项目目录如下：</p>
-<p>![2020-06-17 14-47-18屏幕截图](/home/fan/图片/2020-06-17 14-47-18屏幕截图.png)</p>
+<p>![2020-06-17 14-47-18屏幕截图](/home/fan/project/hexo/source/_posts/（python个人博客打造之二）——启动django和后台/2020-06-17 14-47-18屏幕截图.png)</p>
 ]]></content>
       <tags>
         <tag>django blog</tag>
