@@ -32,9 +32,101 @@
 <p>生成项目目录如下：</p>
 <img src="/images/20-6-17/8.png" alt="8" style="zoom:80%;">
 
+<h2 id="django启动"><a href="#django启动" class="headerlink" title="django启动"></a>django启动</h2><p>输入：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python manage.py runserver <span class="number">8000</span> <span class="comment">#端口可以设定</span></span><br></pre></td></tr></table></figure>
+
+<p>打开浏览器，输入：127.0.0.1:8000，可以看到django已经启动了</p>
+<img src="/images/20-6-17/9.png" alt="9" style="zoom:80%;">
+
+<h2 id="连接Mysql"><a href="#连接Mysql" class="headerlink" title="连接Mysql"></a>连接Mysql</h2><h3 id="django自带sqlite3"><a href="#django自带sqlite3" class="headerlink" title="django自带sqlite3"></a>django自带sqlite3</h3><p>django自带的数据库为sqlite3，无需安装和更改即可使用。打开settings.py，找到：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.sqlite3'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: os.path.join(BASE_DIR, <span class="string">'db.sqlite3'</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上为sqlite3的配置，无需改动，如果采用此数据库，后面的连接mysql可以跳过。sqlite对一个博客系统来说，是足够的，也可以不用mysql，有兴趣的可以自行了解二者的区别。</p>
+<h3 id="使用mysql"><a href="#使用mysql" class="headerlink" title="使用mysql"></a>使用mysql</h3><h4 id="建立数据库"><a href="#建立数据库" class="headerlink" title="建立数据库"></a>建立数据库</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">mysql -u root -p </span><br><span class="line"><span class="comment">#输入mysql root 用户密码</span></span><br><span class="line">create user username identified by <span class="string">'password'</span>; <span class="comment">#新建一个用户，username，password自定</span></span><br><span class="line">create database xxx; <span class="comment">#新建数据库，xx自定</span></span><br><span class="line">grant all privileges on 数据库名.* to <span class="string">'新建用户名'</span>@<span class="string">'%'</span>;  <span class="comment">#将新建数据库的所有权限赋予新建用户</span></span><br><span class="line">flush privileges; <span class="comment">#刷新</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="settings-py-配置"><a href="#settings-py-配置" class="headerlink" title="settings.py 配置"></a>settings.py 配置</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">"default"</span>: &#123;</span><br><span class="line">        <span class="string">"ENGINE"</span>: <span class="string">"django.db.backends.mysql"</span>,</span><br><span class="line">        <span class="string">"HOST"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">        <span class="string">"PORT"</span>: <span class="number">3306</span>,</span><br><span class="line">        <span class="string">"USER"</span>: <span class="string">"username"</span>,</span><br><span class="line">        <span class="string">"PASSWORD"</span>: <span class="string">"xxx"</span>,</span><br><span class="line">        <span class="string">"NAME"</span>: <span class="string">"database-name"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装mysqlclient"><a href="#安装mysqlclient" class="headerlink" title="安装mysqlclient"></a>安装mysqlclient</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install mysqlclient</span><br></pre></td></tr></table></figure>
+
+<h4 id="重启django服务器"><a href="#重启django服务器" class="headerlink" title="重启django服务器"></a>重启django服务器</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python manage.py runserver <span class="number">8000</span></span><br></pre></td></tr></table></figure>
+
+<p>如果不报错，则表明连接mysql成功。</p>
+<h2 id="数据库迁移"><a href="#数据库迁移" class="headerlink" title="数据库迁移"></a>数据库迁移</h2><p>上述步骤中，终端中，会有反馈：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">You have 17 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.</span><br><span class="line">Run 'python manage.py migrate' to apply them.</span><br></pre></td></tr></table></figure>
+
+<p>django中自带了很多app，如果需要使用它们，需要先进行数据库的迁移。</p>
+<p>django自带的app和中间件：</p>
+<img src="/images/20-6-17/10.png" alt="10" style="zoom:80%;">
+
+<p><strong>一般情况下，如果你已经是大神级别了，就知道这些是什么模块或者组件，当你还是入门级别时，通常情况下，都不需要改动这些，除非教程里有步骤说明</strong>。</p>
+<h3 id="数据库迁移-1"><a href="#数据库迁移-1" class="headerlink" title="数据库迁移"></a>数据库迁移</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python manage.py makemigrations <span class="comment">#记录迁移内容，生成migrations文件夹</span></span><br><span class="line">python manage.py migrate <span class="comment">#迁移数据库</span></span><br></pre></td></tr></table></figure>
+
+<p>输入以上内容，查看输出。</p>
+<img src="/images/20-6-17/11.png" alt="11" style="zoom:80%;">
+
+<p><strong>django中数据库的使用，可以分为以下几个步骤：</strong></p>
+<ol>
+<li>连接数据库（settings.py中的DATABASES设置）</li>
+<li>通过自带的django ORM，创建数据库模型（一个数据库模型，对应一张数据库的表）</li>
+<li>迁移数据库；迁移数据库前，先进行的makemigrations用来记录数据模型的变化，生成migrations文件夹（上一步骤没产生），migrate根据变化，来生成或修改数据库中的表格</li>
+<li>在程序编码过程中，如果修改了数据库模型，需要运行以上两个命令</li>
+<li>程序运行过程中，通过已经连接的配置，对数据库表的内容进行增删改查</li>
+</ol>
+<h3 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h3><p>在mysql中，查看对应的数据库，看看是否是生成了刚才终端中输出的数据表。</p>
+<h2 id="创建超级用户"><a href="#创建超级用户" class="headerlink" title="创建超级用户"></a>创建超级用户</h2><p>输入：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python manage.py createsuperuser</span><br><span class="line">   <span class="comment">#输入用户名，邮箱，密码，相当于注册一个用户</span></span><br></pre></td></tr></table></figure>
+
+<p>成功创建后，可以用这个用户来登录后台进行管理</p>
+<h2 id="登录后台"><a href="#登录后台" class="headerlink" title="登录后台"></a>登录后台</h2><p>重新启动django服务器，在浏览器中输入127.0.0.1:8000/admin，</p>
+<img src="/images/20-6-17/12.png" alt="12" style="zoom:80%;">
+
+<p>输入刚才创建的超级用户，即可登录后台。</p>
+<img src="/images/20-6-17/13.png" alt="13" style="zoom:80%;">
+
+<p>目前可以看到，一个django自带的后台管理了。</p>
+<h3 id="Group管理"><a href="#Group管理" class="headerlink" title="Group管理"></a>Group管理</h3><p>点击Group（组）的add，可以添加一组拥有某些权限的组，将普通用户归到这些组，即可拥有对应的权限。</p>
+<img src="/images/20-6-17/14.png" alt="14" style="zoom:80%;">
+
+<h3 id="User管理"><a href="#User管理" class="headerlink" title="User管理"></a>User管理</h3><p>点击User的add，可以添加一个用户：</p>
+<img src="/images/20-6-17/15.png" alt="15" style="zoom:80%;">
+
+<p>点击save后，可以进行用户信息和权限的具体更改：</p>
+<ul>
+<li>用户名和邮箱</li>
+</ul>
+<img src="/images/20-6-17/16.png" alt="16" style="zoom:80%;">
+
+<ul>
+<li><p>用户权限</p>
+<p>Active–是否激活，默认激活，可用于前端登录普通用户验证是否已激活</p>
+<p>Staff status–是否可以登录后台管理站点，默认为否</p>
+<p>Superuser status–是否超级用户，默认为否。超级用户拥有所有权限</p>
+<img src="/images/20-6-17/17.png" alt="17" style="zoom:80%;">
+</li>
+<li><p>Group/User pemission</p>
+<p>Group/User pemission决定是否该用户是否拥有某个组的权限或者某些权限</p>
+<img src="/images/20-6-17/18.png" alt="18" style="zoom:80%;">
+</li>
+<li><p>import date</p>
+<p>登录日期，注册日期等信息</p>
+<img src="/images/20-6-17/19.png" alt="19" style="zoom:80%;">
+
+</li>
+</ul>
+<p>以上，就是django启动和后台登录的操作，接下来，我们将会讲解django等基本操作。</p>
 ]]></content>
       <tags>
         <tag>django blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>first blog</title>
+    <url>/2020/06/10/first-blog/</url>
+    <content><![CDATA[<p>终于做好了hexo博客的安装和部署，写下此文，当作这个博客的开端，希望自己能多积累，多长进。</p>
+<p>凡事需要坚持，坚持才能胜利。</p>
+]]></content>
+      <tags>
+        <tag>blogtest</tag>
       </tags>
   </entry>
   <entry>
@@ -85,16 +177,6 @@
 ]]></content>
       <tags>
         <tag>python, blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>first blog</title>
-    <url>/2020/06/10/first-blog/</url>
-    <content><![CDATA[<p>终于做好了hexo博客的安装和部署，写下此文，当作这个博客的开端，希望自己能多积累，多长进。</p>
-<p>凡事需要坚持，坚持才能胜利。</p>
-]]></content>
-      <tags>
-        <tag>blogtest</tag>
       </tags>
   </entry>
 </search>
