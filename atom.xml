@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://52-wandering.github.io/"/>
-  <updated>2020-06-16T00:09:02.074Z</updated>
+  <updated>2020-06-17T06:48:52.796Z</updated>
   <id>https://52-wandering.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>（python个人博客打造之二）——启动django和后台</title>
+    <link href="https://52-wandering.github.io/2020/06/16/%EF%BC%88python%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%89%93%E9%80%A0%E4%B9%8B%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%90%AF%E5%8A%A8django%E5%92%8C%E5%90%8E%E5%8F%B0/"/>
+    <id>https://52-wandering.github.io/2020/06/16/%EF%BC%88python%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%89%93%E9%80%A0%E4%B9%8B%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%90%AF%E5%8A%A8django%E5%92%8C%E5%90%8E%E5%8F%B0/</id>
+    <published>2020-06-16T00:21:48.000Z</published>
+    <updated>2020-06-17T06:48:52.796Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装Django-3"><a href="#安装Django-3" class="headerlink" title="安装Django 3"></a>安装Django 3</h2><p>新建项目目录：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">source myblog-env/bin/activate <span class="comment">#开启虚拟环境</span></span><br><span class="line">mkdir myblog <span class="comment">#项目目录</span></span><br><span class="line">cd myblog <span class="comment">#进入目录</span></span><br><span class="line">pip install django <span class="comment">#安装django</span></span><br></pre></td></tr></table></figure><h2 id="使用pycharm"><a href="#使用pycharm" class="headerlink" title="使用pycharm"></a>使用pycharm</h2><h3 id="设置pycharm解释器"><a href="#设置pycharm解释器" class="headerlink" title="设置pycharm解释器"></a>设置pycharm解释器</h3><p>为了更好地使用pycharm，我们可以将该项目的解释器设置为上一篇博文中，安装的虚拟环境的python3.6，即myblog-env/bin/python3.6，这样，我们的解释器就会和项目安装的依赖同步。</p><h4 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h4><ol><li><p>打开pycharm</p></li><li><p>点击右下角 python3.6 位置</p></li><li><img src="/2020/06/16/%EF%BC%88python%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%89%93%E9%80%A0%E4%B9%8B%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%90%AF%E5%8A%A8django%E5%92%8C%E5%90%8E%E5%8F%B0/fan/图片/1.png" alt="1" style="zoom:80%;"></li><li><p>点击interpreter setting</p></li><li><img src="/2020/06/16/%EF%BC%88python%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%89%93%E9%80%A0%E4%B9%8B%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%90%AF%E5%8A%A8django%E5%92%8C%E5%90%8E%E5%8F%B0/fan/图片/2020-06-17 14-13-52 的屏幕截图.png" alt="2020-06-17 14-13-52 的屏幕截图" style="zoom:80%;"></li><li><p>点击add</p></li><li><p>![2020-06-17 14-14-22 的屏幕截图](/home/fan/图片/2020-06-17 14-14-22 的屏幕截图.png)</p></li><li><p>点击existing environment,点击interpreter右侧的方框，查找上述所说的路径，选择python3.6</p><p>![2020-06-17 14-14-32 的屏幕截图](/home/fan/图片/2020-06-17 14-14-32 的屏幕截图.png)</p><p>点击ok</p><p>![2020-06-17 14-14-54 的屏幕截图](/home/fan/图片/2020-06-17 14-14-54 的屏幕截图.png)</p><p>点击make available to all projects，点击ok</p><p>![2020-06-17 14-15-01 的屏幕截图](/home/fan/图片/2020-06-17 14-15-01 的屏幕截图.png)</p><p>可见本地已安装的依赖，点击ok，回到pycharm，可见右下角的解释器已经为python3.6(myblog-env)</p><p>![2020-06-17 14-15-43 的屏幕截图](/home/fan/图片/2020-06-17 14-15-43 的屏幕截图.png)</p></li></ol><h2 id="django-新建工程目录"><a href="#django-新建工程目录" class="headerlink" title="django 新建工程目录"></a>django 新建工程目录</h2><p>在终端下，输入：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject blog /home/fan/project/myblog <span class="comment">#blog为项目名，后面为项目目录路径，不设置将会在当前目录下</span></span><br></pre></td></tr></table></figure><p>生成项目目录如下：</p><p>![2020-06-17 14-47-18屏幕截图](/home/fan/图片/2020-06-17 14-47-18屏幕截图.png)</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;安装Django-3&quot;&gt;&lt;a href=&quot;#安装Django-3&quot; class=&quot;headerlink&quot; title=&quot;安装Django 3&quot;&gt;&lt;/a&gt;安装Django 3&lt;/h2&gt;&lt;p&gt;新建项目目录：&lt;/p&gt;
+&lt;figure class=&quot;highlight p
+      
+    
+    </summary>
+    
+    
+    
+      <category term="django blog" scheme="https://52-wandering.github.io/tags/django-blog/"/>
+    
+  </entry>
   
   <entry>
     <title>（python个人博客打造之一）——需求&amp;环境准备</title>
