@@ -1,17 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>first blog</title>
-    <url>/2020/06/10/first-blog/</url>
-    <content><![CDATA[<p>终于做好了hexo博客的安装和部署，写下此文，当作这个博客的开端，希望自己能多积累，多长进。</p>
-<p>凡事需要坚持，坚持才能胜利。</p>
+    <title>（个人博客打造之一）——需求&amp;环境准备</title>
+    <url>/2020/06/15/%E9%9C%80%E6%B1%82-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/</url>
+    <content><![CDATA[<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>学习需要积累，通常最好的实现方式是做笔记。为此，我们需要一个可以记录并分享自己所学，并能随时查阅复习的系统，最好的选择，就是建立一个博客系统。</p>
+<p>接下来，我们将要用python的web框架Django，来实现一个自己的博客系统。</p>
+<p>博客系统的需求分析：</p>
+<ol>
+<li>可以记录自己的笔记，或者想分享的知识技术，有一个清晰简洁的编辑页面</li>
+<li>能将自己的知识在网上分享展示出来，页面清晰优雅</li>
+<li>可以随时复习查阅，可以随时查找文章</li>
+<li>开启评论功能，增加交流</li>
+<li>开启社交功能，设置登录留言，直接联系博主</li>
+</ol>
+<p>综合以上需求，我们将会实现一个博客系统，同时通过这个项目，可以很好地学习python和Django实现项目的过程。</p>
+<h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2><p>此教程不会过多地详述关于python和Django的基础知识，我们会着重讲流程和相关库的使用，达到熟悉流程和项目依赖的效果。</p>
+<p>你需要：</p>
+<ul>
+<li><input disabled type="checkbox"> 一部可以上网的电脑，操作一般软件，至少不会卡顿的性能，系统最好是ubuntu18.04，作者的系统就是ubuntu18.04，若是其他系统，清自行做好兼容准备。</li>
+<li><input disabled type="checkbox"> 浏览器：建议使用谷歌浏览器</li>
+<li><input disabled type="checkbox"> python编辑器：pycharm，社区版即可，免费。</li>
+<li><input disabled type="checkbox"> 自行学习python3的基础知识，至少了解到python 的语法，基本数据结构，函数，类，以及描述符，WSGI等</li>
+<li><input disabled type="checkbox"> 安装python3.6，其他版本请自行了解清楚，</li>
+<li><input disabled type="checkbox"> 了解SQL，知道关系型数据库</li>
+<li><input disabled type="checkbox"> 安装Mysql8，若是想用django自带的Sqlite也可以（无需先安装），数据库是可以换的，难度不大</li>
+<li><input disabled type="checkbox"> 了解一下bootstrap4.5，此博客将会使用此来做前端页面。</li>
+<li><input disabled type="checkbox"> 如果想部署公网的话，可以提前购买好云服务器和域名，了解备案。（本教程将暂时不会涉及到部署，需要了解，可以私信作者）</li>
+</ul>
+<h2 id="博客架构"><a href="#博客架构" class="headerlink" title="博客架构"></a>博客架构</h2><ol>
+<li>语言：python 3.6</li>
+<li>后端： django 3</li>
+<li>前端： bootstrap 4</li>
+<li>数据库： Mysql 8 或者sqlite</li>
+</ol>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#打开终端，创建虚拟环境，并非项目路径</span></span><br><span class="line">pip install virtualenv</span><br><span class="line"><span class="comment">#进入某个目录，如/home/xx/project</span></span><br><span class="line">virtualenv myblog-env  <span class="comment">#创建一个名为myblog-env的目录, 并且安装了myblog-env/bin/python, 创建了lib,bin目录,安装了pip</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><code>lib</code>,所有安装的python库都会放在这个目录中的<code>lib/python3.6/site-packages/</code>下</li>
+<li><code>bin</code>,<code>bin/python</code>是在当前环境是使用的python解释器，pycharm解释器的选择就在此</li>
+<li>以上目录就是虚拟环境的所在了，接下来在开发过程中，我们安装的依赖和包都会在这个目录下，与整体全局的环境隔离开</li>
+</ol>
+<h3 id="虚拟环境常用命令"><a href="#虚拟环境常用命令" class="headerlink" title="虚拟环境常用命令"></a>虚拟环境常用命令</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip list <span class="comment">#显示所有安装的包</span></span><br><span class="line">pip freeze  <span class="comment">#显示所有依赖</span></span><br><span class="line">pip freeze &gt; requirement.txt  <span class="comment">#生成requirement.txt文件</span></span><br><span class="line">pip install -r requirement.txt  <span class="comment">#根据requirement.txt生成相同的环境</span></span><br><span class="line"></span><br><span class="line">source myblog-env/bin/activate <span class="comment">#开启虚拟环境</span></span><br><span class="line">deactiate <span class="comment">#关闭虚拟环境</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装依赖库"><a href="#安装依赖库" class="headerlink" title="安装依赖库"></a>安装依赖库</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">source myblog-env/bin/activate <span class="comment">#开启虚拟环境</span></span><br><span class="line">pip install  django <span class="comment">#会自动安装最新版，如果不指定版本</span></span><br><span class="line">pip install mysqlclient <span class="comment">#连接Mysql，建议使用mysqlclient</span></span><br></pre></td></tr></table></figure>
+
+<p>以上就是整个环境和基础的准备，接下来，我们可以进入到打造博客系统的核心环节</p>
 ]]></content>
+      <categories>
+        <category>django打造个人博客系列</category>
+      </categories>
       <tags>
-        <tag>blogtest</tag>
+        <tag>python, blog</tag>
       </tags>
   </entry>
   <entry>
-    <title>（python个人博客打造之三）——博客成型</title>
+    <title>（个人博客打造之三）——博客成型</title>
     <url>/2020/06/19/%EF%BC%88python%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%89%93%E9%80%A0%E4%B9%8B%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2%E6%88%90%E5%9E%8B/</url>
     <content><![CDATA[<h2 id="前端网页效果"><a href="#前端网页效果" class="headerlink" title="前端网页效果"></a>前端网页效果</h2><h3 id="bootstrap"><a href="#bootstrap" class="headerlink" title="bootstrap"></a>bootstrap</h3><p>bootstrap是一个比较优秀的前端UI，由html，css，js等写成，可以制作网页。</p>
 <h3 id="bootstrap的使用"><a href="#bootstrap的使用" class="headerlink" title="bootstrap的使用"></a>bootstrap的使用</h3><p>推荐一个bootstrap的中文文档网址：<a href="http://code.z01.com/v4/docs/" target="_blank" rel="noopener">http://code.z01.com/v4/docs/</a></p>
@@ -74,15 +117,19 @@
 <h3 id="注册app"><a href="#注册app" class="headerlink" title="注册app"></a>注册app</h3><p>在settings.py中：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'blogapp'</span>,<span class="comment">#注意加逗号，注册的app</span></span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
-<h3 id="配置静态文件"><a href="#配置静态文件" class="headerlink" title="配置静态文件"></a>配置静态文件</h3><p>首先在项目根目录下创建static目录（文件夹），</p>
+<h3 id="配置静态文件"><a href="#配置静态文件" class="headerlink" title="配置静态文件"></a>配置静态文件</h3><h4 id="创建主目录static（此步可以先跳过，做也无妨）"><a href="#创建主目录static（此步可以先跳过，做也无妨）" class="headerlink" title="创建主目录static（此步可以先跳过，做也无妨）"></a>创建主目录static（此步可以先跳过，做也无妨）</h4><p>首先在项目根目录下创建static目录（文件夹），</p>
 <img src="/images/20-6-20/18.png" alt="16" style="zoom:80%;">
 
 <p>在settings.py 文件下添加</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">STATIC_URL &#x3D; &#39;&#x2F;static&#x2F;&#39;  # 原settings.py默认已添加，使用静态文件时的前缀</span><br><span class="line">STATICFILES_DIRS &#x3D; (</span><br><span class="line">        os.path.join(BASE_DIR,&#39;static&#39;), #逗号不能漏</span><br><span class="line">    )</span><br><span class="line"># 这样在template中就可以导入static目录下的静态文件</span><br></pre></td></tr></table></figure>
 
+<p><strong>以下必做：</strong></p>
 <h4 id="创建templates目录-templates名字固定，不能随意更改"><a href="#创建templates目录-templates名字固定，不能随意更改" class="headerlink" title="创建templates目录(templates名字固定，不能随意更改)"></a>创建templates目录(templates名字固定，不能随意更改)</h4><p>在blogapp目录下，创建templates/blogapp目录，从前端文件中，将home.html文件放置在此目录下。</p>
 <h4 id="创建static目录-static名字固定，不能随意更改"><a href="#创建static目录-static名字固定，不能随意更改" class="headerlink" title="创建static目录(static名字固定，不能随意更改)"></a>创建static目录(static名字固定，不能随意更改)</h4><p>在blogapp目录下，创建static/blogapp目录，从前端文件中，将img文件夹，svg-img文件夹，font.css放置在此目录下。</p>
 <h4 id="创建urls-py"><a href="#创建urls-py" class="headerlink" title="创建urls.py"></a>创建urls.py</h4><p>在blogapp目录下，创建urls.py</p>
+<p>目录效果：</p>
+<img src="/images/20-6-20/21.png" alt="。。。" style="zoom:80%;">
+
 <h4 id="修改主urls-py"><a href="#修改主urls-py" class="headerlink" title="修改主urls.py"></a>修改主urls.py</h4><p>在项目目录下：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cd blog <span class="comment">#进入工程目录</span></span><br><span class="line"><span class="comment">#修改blog/urls.py 如下：</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, include</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'admin/'</span>, admin.site.urls),</span><br><span class="line">    path(<span class="string">''</span>,include(<span class="string">'blogapp.urls'</span>,namespace=<span class="string">'blog'</span>)),<span class="comment">#include指向分级目录，即我们的blogapp下的urls.py</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
@@ -111,8 +158,8 @@
 <p>修改完成，刷新浏览器，即可看到正确的效果，和刚开始单独打开home.html一样，图片全部显示：</p>
 <img src="/images/20-6-20/20.png" alt="18" style="zoom:80%;">
 
-<h2 id="Django流程概述"><a href="#Django流程概述" class="headerlink" title="Django流程概述"></a>Django流程概述</h2><h3 id="浏览器输入网址"><a href="#浏览器输入网址" class="headerlink" title="浏览器输入网址"></a>浏览器输入网址</h3><p>浏览器网址栏输入的网址，即url，统一资源定位府，http:127.0.0.1:8000，会被浏览器解析，发送到对应的服务器，127.0.0.1会指向本机，8000指端口，<strong>django自带了服务器程序，会随着django启动。所以django既是服务器，也程序处理框架。</strong></p>
-<p>浏览器会和这一端口通信，发送请求。本例中，8000应该为8000/，但是django会自动识别并添加，所以最后一个/可以不用写。</p>
+<h2 id="Django流程概述"><a href="#Django流程概述" class="headerlink" title="Django流程概述"></a>Django流程概述</h2><h3 id="浏览器输入网址"><a href="#浏览器输入网址" class="headerlink" title="浏览器输入网址"></a>浏览器输入网址</h3><p>浏览器网址栏输入的网址，即url，统一资源定位府，http:127.0.0.1:8000，会被浏览器解析，发送到对应的服务器，127.0.0.1会指向本机，8000指端口，<strong>django自带了服务器程序，会随着django启动。所以django既是服务器，也程序处理框架。</strong>python manage.py runserver 8000 此命令即为启动django自带的服务器。服务器会调用我们写的程序逻辑。</p>
+<p>浏览器会和这一端口通信，发送请求。本例中，127.0.0.1:8000应该为127.0.0.1:8000/，但是django会自动识别并添加，所以最后一个/可以不用写。</p>
 <h3 id="url识别并分发"><a href="#url识别并分发" class="headerlink" title="url识别并分发"></a>url识别并分发</h3><p>读者可以在views.py中，加入：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">post_home</span><span class="params">(request)</span>:</span></span><br><span class="line">    print(request)<span class="comment">#打印浏览器的request</span></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'blogapp/home.html'</span>)</span><br></pre></td></tr></table></figure>
 
@@ -135,64 +182,14 @@
 <p>上述即为浏览器和django交互通信输出网页的过程，更详细的，可以搜索WSGI进行了解。</p>
 ]]></content>
       <categories>
-        <category>python个人博客系列</category>
+        <category>django打造个人博客系列</category>
       </categories>
       <tags>
         <tag>python blog</tag>
       </tags>
   </entry>
   <entry>
-    <title>（python个人博客打造之一）——需求&amp;环境准备</title>
-    <url>/2020/06/15/%E9%9C%80%E6%B1%82-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/</url>
-    <content><![CDATA[<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>学习需要积累，通常最好的实现方式是做笔记。为此，我们需要一个可以记录并分享自己所学，并能随时查阅复习的系统，最好的选择，就是建立一个博客系统。</p>
-<p>接下来，我们将要用python的web框架Django，来实现一个自己的博客系统。</p>
-<p>博客系统的需求分析：</p>
-<ol>
-<li>可以记录自己的笔记，或者想分享的知识技术，有一个清晰简洁的编辑页面</li>
-<li>能将自己的知识在网上分享展示出来，页面清晰优雅</li>
-<li>可以随时复习查阅，可以随时查找文章</li>
-<li>开启评论功能，增加交流</li>
-<li>开启社交功能，设置登录留言，直接联系博主</li>
-</ol>
-<p>综合以上需求，我们将会实现一个博客系统，同时通过这个项目，可以很好地学习python和Django实现项目的过程。</p>
-<h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2><p>此教程不会过多地详述关于python和Django的基础知识，我们会着重讲流程和相关库的使用，达到熟悉流程和项目依赖的效果。</p>
-<p>你需要：</p>
-<ul>
-<li><input disabled type="checkbox"> 一部可以上网的电脑，操作一般软件，至少不会卡顿的性能，系统最好是ubuntu18.04，作者的系统就是ubuntu18.04，若是其他系统，清自行做好兼容准备。</li>
-<li><input disabled type="checkbox"> 浏览器：建议使用谷歌浏览器</li>
-<li><input disabled type="checkbox"> python编辑器：pycharm，社区版即可，免费。</li>
-<li><input disabled type="checkbox"> 自行学习python3的基础知识，至少了解到python 的语法，基本数据结构，函数，类，以及描述符，WSGI等</li>
-<li><input disabled type="checkbox"> 安装python3.6，其他版本请自行了解清楚，</li>
-<li><input disabled type="checkbox"> 了解SQL，知道关系型数据库</li>
-<li><input disabled type="checkbox"> 安装Mysql8，若是想用django自带的Sqlite也可以（无需先安装），数据库是可以换的，难度不大</li>
-<li><input disabled type="checkbox"> 了解一下bootstrap4.5，此博客将会使用此来做前端页面。</li>
-<li><input disabled type="checkbox"> 如果想部署公网的话，可以提前购买好云服务器和域名，了解备案。（本教程将暂时不会涉及到部署，需要了解，可以私信作者）</li>
-</ul>
-<h2 id="博客架构"><a href="#博客架构" class="headerlink" title="博客架构"></a>博客架构</h2><ol>
-<li>语言：python 3.6</li>
-<li>后端： django 3</li>
-<li>前端： bootstrap 4</li>
-<li>数据库： Mysql 8 或者sqlite</li>
-</ol>
-<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#打开终端，创建虚拟环境，并非项目路径</span></span><br><span class="line">pip install virtualenv</span><br><span class="line"><span class="comment">#进入某个目录，如/home/xx/project</span></span><br><span class="line">virtualenv myblog-env  <span class="comment">#创建一个名为myblog-env的目录, 并且安装了myblog-env/bin/python, 创建了lib,bin目录,安装了pip</span></span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><code>lib</code>,所有安装的python库都会放在这个目录中的<code>lib/python3.6/site-packages/</code>下</li>
-<li><code>bin</code>,<code>bin/python</code>是在当前环境是使用的python解释器，pycharm解释器的选择就在此</li>
-<li>以上目录就是虚拟环境的所在了，接下来在开发过程中，我们安装的依赖和包都会在这个目录下，与整体全局的环境隔离开</li>
-</ol>
-<h3 id="虚拟环境常用命令"><a href="#虚拟环境常用命令" class="headerlink" title="虚拟环境常用命令"></a>虚拟环境常用命令</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip list <span class="comment">#显示所有安装的包</span></span><br><span class="line">pip freeze  <span class="comment">#显示所有依赖</span></span><br><span class="line">pip freeze &gt; requirement.txt  <span class="comment">#生成requirement.txt文件</span></span><br><span class="line">pip install -r requirement.txt  <span class="comment">#根据requirement.txt生成相同的环境</span></span><br><span class="line"></span><br><span class="line">source myblog-env/bin/activate <span class="comment">#开启虚拟环境</span></span><br><span class="line">deactiate <span class="comment">#关闭虚拟环境</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="安装依赖库"><a href="#安装依赖库" class="headerlink" title="安装依赖库"></a>安装依赖库</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">source myblog-env/bin/activate <span class="comment">#开启虚拟环境</span></span><br><span class="line">pip install  django <span class="comment">#会自动安装最新版，如果不指定版本</span></span><br><span class="line">pip install mysqlclient <span class="comment">#连接Mysql，建议使用mysqlclient</span></span><br></pre></td></tr></table></figure>
-
-<p>以上就是整个环境和基础的准备，接下来，我们可以进入到打造博客系统的核心环节</p>
-]]></content>
-      <tags>
-        <tag>python, blog</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>（python个人博客打造之二）——启动django和后台</title>
+    <title>（个人博客打造之二）——启动django和后台</title>
     <url>/2020/06/16/%EF%BC%88python%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%89%93%E9%80%A0%E4%B9%8B%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%90%AF%E5%8A%A8django%E5%92%8C%E5%90%8E%E5%8F%B0/</url>
     <content><![CDATA[<h2 id="安装Django-3"><a href="#安装Django-3" class="headerlink" title="安装Django 3"></a>安装Django 3</h2><p>新建项目目录：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">source myblog-env/bin/activate <span class="comment">#开启虚拟环境</span></span><br><span class="line">mkdir myblog <span class="comment">#项目目录</span></span><br><span class="line">cd myblog <span class="comment">#进入目录</span></span><br><span class="line">pip install django <span class="comment">#安装django</span></span><br></pre></td></tr></table></figure>
@@ -306,8 +303,21 @@
 </ul>
 <p>以上，就是django启动和后台登录的操作，接下来，我们将会讲解django等基本操作。</p>
 ]]></content>
+      <categories>
+        <category>django打造个人博客系列</category>
+      </categories>
       <tags>
         <tag>django blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>first blog</title>
+    <url>/2020/06/10/first-blog/</url>
+    <content><![CDATA[<p>终于做好了hexo博客的安装和部署，写下此文，当作这个博客的开端，希望自己能多积累，多长进。</p>
+<p>凡事需要坚持，坚持才能胜利。</p>
+]]></content>
+      <tags>
+        <tag>blogtest</tag>
       </tags>
   </entry>
 </search>
