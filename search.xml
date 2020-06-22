@@ -1,6 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>first blog</title>
+    <url>/2020/06/10/first-blog/</url>
+    <content><![CDATA[<p>终于做好了hexo博客的安装和部署，写下此文，当作这个博客的开端，希望自己能多积累，多长进。</p>
+<p>凡事需要坚持，坚持才能胜利。</p>
+]]></content>
+      <tags>
+        <tag>blogtest</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>（python个人博客打造之一）——需求&amp;环境准备</title>
+    <url>/2020/06/15/%E9%9C%80%E6%B1%82-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/</url>
+    <content><![CDATA[<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>学习需要积累，通常最好的实现方式是做笔记。为此，我们需要一个可以记录并分享自己所学，并能随时查阅复习的系统，最好的选择，就是建立一个博客系统。</p>
+<p>接下来，我们将要用python的web框架Django，来实现一个自己的博客系统。</p>
+<p>博客系统的需求分析：</p>
+<ol>
+<li>可以记录自己的笔记，或者想分享的知识技术，有一个清晰简洁的编辑页面</li>
+<li>能将自己的知识在网上分享展示出来，页面清晰优雅</li>
+<li>可以随时复习查阅，可以随时查找文章</li>
+<li>开启评论功能，增加交流</li>
+<li>开启社交功能，设置登录留言，直接联系博主</li>
+</ol>
+<p>综合以上需求，我们将会实现一个博客系统，同时通过这个项目，可以很好地学习python和Django实现项目的过程。</p>
+<h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2><p>此教程不会过多地详述关于python和Django的基础知识，我们会着重讲流程和相关库的使用，达到熟悉流程和项目依赖的效果。</p>
+<p>你需要：</p>
+<ul>
+<li><input disabled type="checkbox"> 一部可以上网的电脑，操作一般软件，至少不会卡顿的性能，系统最好是ubuntu18.04，作者的系统就是ubuntu18.04，若是其他系统，清自行做好兼容准备。</li>
+<li><input disabled type="checkbox"> 浏览器：建议使用谷歌浏览器</li>
+<li><input disabled type="checkbox"> python编辑器：pycharm，社区版即可，免费。</li>
+<li><input disabled type="checkbox"> 自行学习python3的基础知识，至少了解到python 的语法，基本数据结构，函数，类，以及描述符，WSGI等</li>
+<li><input disabled type="checkbox"> 安装python3.6，其他版本请自行了解清楚，</li>
+<li><input disabled type="checkbox"> 了解SQL，知道关系型数据库</li>
+<li><input disabled type="checkbox"> 安装Mysql8，若是想用django自带的Sqlite也可以（无需先安装），数据库是可以换的，难度不大</li>
+<li><input disabled type="checkbox"> 了解一下bootstrap4.5，此博客将会使用此来做前端页面。</li>
+<li><input disabled type="checkbox"> 如果想部署公网的话，可以提前购买好云服务器和域名，了解备案。（本教程将暂时不会涉及到部署，需要了解，可以私信作者）</li>
+</ul>
+<h2 id="博客架构"><a href="#博客架构" class="headerlink" title="博客架构"></a>博客架构</h2><ol>
+<li>语言：python 3.6</li>
+<li>后端： django 3</li>
+<li>前端： bootstrap 4</li>
+<li>数据库： Mysql 8 或者sqlite</li>
+</ol>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#打开终端，创建虚拟环境，并非项目路径</span></span><br><span class="line">pip install virtualenv</span><br><span class="line"><span class="comment">#进入某个目录，如/home/xx/project</span></span><br><span class="line">virtualenv myblog-env  <span class="comment">#创建一个名为myblog-env的目录, 并且安装了myblog-env/bin/python, 创建了lib,bin目录,安装了pip</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><code>lib</code>,所有安装的python库都会放在这个目录中的<code>lib/python3.6/site-packages/</code>下</li>
+<li><code>bin</code>,<code>bin/python</code>是在当前环境是使用的python解释器，pycharm解释器的选择就在此</li>
+<li>以上目录就是虚拟环境的所在了，接下来在开发过程中，我们安装的依赖和包都会在这个目录下，与整体全局的环境隔离开</li>
+</ol>
+<h3 id="虚拟环境常用命令"><a href="#虚拟环境常用命令" class="headerlink" title="虚拟环境常用命令"></a>虚拟环境常用命令</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip list <span class="comment">#显示所有安装的包</span></span><br><span class="line">pip freeze  <span class="comment">#显示所有依赖</span></span><br><span class="line">pip freeze &gt; requirement.txt  <span class="comment">#生成requirement.txt文件</span></span><br><span class="line">pip install -r requirement.txt  <span class="comment">#根据requirement.txt生成相同的环境</span></span><br><span class="line"></span><br><span class="line">source myblog-env/bin/activate <span class="comment">#开启虚拟环境</span></span><br><span class="line">deactiate <span class="comment">#关闭虚拟环境</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装依赖库"><a href="#安装依赖库" class="headerlink" title="安装依赖库"></a>安装依赖库</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">source myblog-env/bin/activate <span class="comment">#开启虚拟环境</span></span><br><span class="line">pip install  django <span class="comment">#会自动安装最新版，如果不指定版本</span></span><br><span class="line">pip install mysqlclient <span class="comment">#连接Mysql，建议使用mysqlclient</span></span><br></pre></td></tr></table></figure>
+
+<p>以上就是整个环境和基础的准备，接下来，我们可以进入到打造博客系统的核心环节</p>
+]]></content>
+      <tags>
+        <tag>python, blog</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>（python个人博客打造之二）——启动django和后台</title>
     <url>/2020/06/16/%EF%BC%88python%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%89%93%E9%80%A0%E4%B9%8B%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%E5%90%AF%E5%8A%A8django%E5%92%8C%E5%90%8E%E5%8F%B0/</url>
     <content><![CDATA[<h2 id="安装Django-3"><a href="#安装Django-3" class="headerlink" title="安装Django 3"></a>安装Django 3</h2><p>新建项目目录：</p>
@@ -120,63 +180,65 @@
       </tags>
   </entry>
   <entry>
-    <title>first blog</title>
-    <url>/2020/06/10/first-blog/</url>
-    <content><![CDATA[<p>终于做好了hexo博客的安装和部署，写下此文，当作这个博客的开端，希望自己能多积累，多长进。</p>
-<p>凡事需要坚持，坚持才能胜利。</p>
-]]></content>
-      <tags>
-        <tag>blogtest</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>（python个人博客打造之一）——需求&amp;环境准备</title>
-    <url>/2020/06/15/%E9%9C%80%E6%B1%82-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/</url>
-    <content><![CDATA[<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>学习需要积累，通常最好的实现方式是做笔记。为此，我们需要一个可以记录并分享自己所学，并能随时查阅复习的系统，最好的选择，就是建立一个博客系统。</p>
-<p>接下来，我们将要用python的web框架Django，来实现一个自己的博客系统。</p>
-<p>博客系统的需求分析：</p>
-<ol>
-<li>可以记录自己的笔记，或者想分享的知识技术，有一个清晰简洁的编辑页面</li>
-<li>能将自己的知识在网上分享展示出来，页面清晰优雅</li>
-<li>可以随时复习查阅，可以随时查找文章</li>
-<li>开启评论功能，增加交流</li>
-<li>开启社交功能，设置登录留言，直接联系博主</li>
-</ol>
-<p>综合以上需求，我们将会实现一个博客系统，同时通过这个项目，可以很好地学习python和Django实现项目的过程。</p>
-<h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2><p>此教程不会过多地详述关于python和Django的基础知识，我们会着重讲流程和相关库的使用，达到熟悉流程和项目依赖的效果。</p>
-<p>你需要：</p>
-<ul>
-<li><input disabled type="checkbox"> 一部可以上网的电脑，操作一般软件，至少不会卡顿的性能，系统最好是ubuntu18.04，作者的系统就是ubuntu18.04，若是其他系统，清自行做好兼容准备。</li>
-<li><input disabled type="checkbox"> 浏览器：建议使用谷歌浏览器</li>
-<li><input disabled type="checkbox"> python编辑器：pycharm，社区版即可，免费。</li>
-<li><input disabled type="checkbox"> 自行学习python3的基础知识，至少了解到python 的语法，基本数据结构，函数，类，以及描述符，WSGI等</li>
-<li><input disabled type="checkbox"> 安装python3.6，其他版本请自行了解清楚，</li>
-<li><input disabled type="checkbox"> 了解SQL，知道关系型数据库</li>
-<li><input disabled type="checkbox"> 安装Mysql8，若是想用django自带的Sqlite也可以（无需先安装），数据库是可以换的，难度不大</li>
-<li><input disabled type="checkbox"> 了解一下bootstrap4.5，此博客将会使用此来做前端页面。</li>
-<li><input disabled type="checkbox"> 如果想部署公网的话，可以提前购买好云服务器和域名，了解备案。（本教程将暂时不会涉及到部署，需要了解，可以私信作者）</li>
-</ul>
-<h2 id="博客架构"><a href="#博客架构" class="headerlink" title="博客架构"></a>博客架构</h2><ol>
-<li>语言：python 3.6</li>
-<li>后端： django 3</li>
-<li>前端： bootstrap 4</li>
-<li>数据库： Mysql 8 或者sqlite</li>
-</ol>
-<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#打开终端，创建虚拟环境，并非项目路径</span></span><br><span class="line">pip install virtualenv</span><br><span class="line"><span class="comment">#进入某个目录，如/home/xx/project</span></span><br><span class="line">virtualenv myblog-env  <span class="comment">#创建一个名为myblog-env的目录, 并且安装了myblog-env/bin/python, 创建了lib,bin目录,安装了pip</span></span><br></pre></td></tr></table></figure>
+    <title>（python个人博客打造之三）——博客成型</title>
+    <url>/2020/06/19/%EF%BC%88python%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%89%93%E9%80%A0%E4%B9%8B%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%E5%8D%9A%E5%AE%A2%E6%88%90%E5%9E%8B/</url>
+    <content><![CDATA[<h2 id="前端网页效果"><a href="#前端网页效果" class="headerlink" title="前端网页效果"></a>前端网页效果</h2><h3 id="bootstrap"><a href="#bootstrap" class="headerlink" title="bootstrap"></a>bootstrap</h3><p>bootstrap是一个比较优秀的前端UI，由html，css，js等写成，可以制作网页。</p>
+<h3 id="bootstrap的使用"><a href="#bootstrap的使用" class="headerlink" title="bootstrap的使用"></a>bootstrap的使用</h3><p>推荐一个bootstrap的中文文档网址：<a href="http://code.z01.com/v4/docs/" target="_blank" rel="noopener">http://code.z01.com/v4/docs/</a></p>
+<p>简单地使用可以通过CDN来使用。即复制相应的链接到html文件中即可。</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Required meta tags --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1, shrink-to-fit=no"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Bootstrap CSS --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"</span> <span class="attr">integrity</span>=<span class="string">"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">&lt;!--网页标题--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--网页内容写在&lt;body&gt;中--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Optional JavaScript --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- jQuery first, then Popper.js, then Bootstrap JS --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://code.jquery.com/jquery-3.3.1.slim.min.js"</span> <span class="attr">integrity</span>=<span class="string">"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"</span> <span class="attr">integrity</span>=<span class="string">"sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"</span> <span class="attr">integrity</span>=<span class="string">"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>以上就是一个hello world的模板，将其保存为html文件，用浏览器打开即可看到效果。自己写的内容，放置在body  /body中，就可以自己制作自己的网页了</p>
+<p>在使用过程中，可以直接复制bootstrap文档中的案例代码，再自己组合修改即可，通常的做法是复制元素内的class内容，如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    #此处为正常默认的段落文字</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"text-left"</span>&gt;</span></span><br><span class="line">    #此处为左对齐的段落文字</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"text-left font-weight-bold"</span>&gt;</span></span><br><span class="line">    #此处为左对齐且加粗的段落文字，注意两者之间的空格</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>bootstrap上手很简单，难在一些网页的自适应布局和组件的布置，可以细心琢磨一下，工具使用：浏览器的下按F12键。效果：</p>
+<img src="/images/20-6-20/14.png" alt="1" style="zoom:80%;">
 
 <ol>
-<li><code>lib</code>,所有安装的python库都会放在这个目录中的<code>lib/python3.6/site-packages/</code>下</li>
-<li><code>bin</code>,<code>bin/python</code>是在当前环境是使用的python解释器，pycharm解释器的选择就在此</li>
-<li>以上目录就是虚拟环境的所在了，接下来在开发过程中，我们安装的依赖和包都会在这个目录下，与整体全局的环境隔离开</li>
+<li>点击第一行左侧的箭头，移动鼠标到网页，可以选取到网页的元素</li>
+<li>点击箭头右侧的两个方形，可以切换屏幕的大小和设备属性，即可以通过点击此，来切换电脑屏幕和小设备（平板/手机）屏幕显示，切换到小屏幕后，可以设置小屏幕的尺寸，来达到查看自适应的效果。如下所示：</li>
 </ol>
-<h3 id="虚拟环境常用命令"><a href="#虚拟环境常用命令" class="headerlink" title="虚拟环境常用命令"></a>虚拟环境常用命令</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip list <span class="comment">#显示所有安装的包</span></span><br><span class="line">pip freeze  <span class="comment">#显示所有依赖</span></span><br><span class="line">pip freeze &gt; requirement.txt  <span class="comment">#生成requirement.txt文件</span></span><br><span class="line">pip install -r requirement.txt  <span class="comment">#根据requirement.txt生成相同的环境</span></span><br><span class="line"></span><br><span class="line">source myblog-env/bin/activate <span class="comment">#开启虚拟环境</span></span><br><span class="line">deactiate <span class="comment">#关闭虚拟环境</span></span><br></pre></td></tr></table></figure>
+<img src="/images/20-6-20/15.png" alt="2" style="zoom:80%;">
 
-<h3 id="安装依赖库"><a href="#安装依赖库" class="headerlink" title="安装依赖库"></a>安装依赖库</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">source myblog-env/bin/activate <span class="comment">#开启虚拟环境</span></span><br><span class="line">pip install  django <span class="comment">#会自动安装最新版，如果不指定版本</span></span><br><span class="line">pip install mysqlclient <span class="comment">#连接Mysql，建议使用mysqlclient</span></span><br></pre></td></tr></table></figure>
+<h3 id="前端文件"><a href="#前端文件" class="headerlink" title="前端文件"></a>前端文件</h3><p>在blog-front文件中：</p>
+<img src="/images/20-6-20/16.png" alt="3" style="zoom:80%;">
 
-<p>以上就是整个环境和基础的准备，接下来，我们可以进入到打造博客系统的核心环节</p>
-]]></content>
+<p>img文件夹存放图片，svg-img文件夹存放图标文件库，font.css文件为网页字体设定，其余为网页内容文件。效果如下：</p>
+<img src="/images/20-6-20/1.png" alt="3" style="zoom:80%;">
+
+<img src="/images/20-6-20/2.png" alt="4" style="zoom:80%;">
+
+<img src="/images/20-6-20/3.png" alt="5" style="zoom:80%;">
+
+<img src="/images/20-6-20/4.png" alt="6" style="zoom:80%;">
+
+<img src="/images/20-6-20/5.png" alt="7" style="zoom:80%;">
+
+<img src="/images/20-6-20/6.png" alt="8" style="zoom:80%;">
+
+<img src="/images/20-6-20/7.png" alt="9" style="zoom:80%;">
+
+<img src="/images/20-6-20/8.png" alt="10" style="zoom:80%;">
+
+<img src="/images/20-6-20/9.png" alt="11" style="zoom:80%;">
+
+<img src="/images/20-6-20/10.png" alt="12" style="zoom:80%;">
+
+<img src="/images/20-6-20/11.png" alt="13" style="zoom:80%;">
+
+<img src="/images/20-6-20/12.png" alt="14" style="zoom:80%;">
+
+<p><strong>以上前端文件均采用推荐bootstrap网址的文档写成，采用CDN，字体图表采用zico图标系统，也是该网址推荐。</strong></p>
+<h2 id="Django全面讲解"><a href="#Django全面讲解" class="headerlink" title="Django全面讲解"></a>Django全面讲解</h2><p>推荐两个django的快速讲解，<a href="https://www.cnblogs.com/LiCheng-/p/6920900.html" target="_blank" rel="noopener">https://www.cnblogs.com/LiCheng-/p/6920900.html</a></p>
+<p><a href="https://www.cnblogs.com/a438842265/p/8625132.html" target="_blank" rel="noopener">https://www.cnblogs.com/a438842265/p/8625132.html</a></p>
+<p>版本可能为1.0版本，但是关于django模块的讲解还是很全面的，有兴趣的可以自己查找类似的新版本内容，或者官方文档查看。这些内容可以当作后面各个步骤的一个参考，建议可以先大概看看关于django的讲解，然后做到对应每一步的时候，就仔细对比查看，学习体会。</p>
+<h2 id="Django博客启动"><a href="#Django博客启动" class="headerlink" title="Django博客启动"></a>Django博客启动</h2>]]></content>
+      <categories>
+        <category>python个人博客系列</category>
+      </categories>
       <tags>
-        <tag>python, blog</tag>
+        <tag>python blog</tag>
       </tags>
   </entry>
 </search>
